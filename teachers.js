@@ -1,5 +1,3 @@
-
-
 "use strict";
 
 const teachers = {
@@ -22,7 +20,7 @@ const teachers = {
 
         db.end();
 
-        rl.prompt();
+        return;
     },
     teacherAsTable(res) {
         let str;

@@ -1,6 +1,3 @@
-const teachers = require("./teachers.js");
-
-
 /**
  * Main function.
  * @returns void
@@ -12,11 +9,13 @@ const teachers = require("./teachers.js");
         output: process.stdout
     });
 
+    const teachers = require("./teachers.js");
+
     rl.setPrompt("skolan: ");
     rl.prompt();
 
     rl.on("close", exitProgram);
-    rl.on("line", (line) => {
+    rl.on("line", async (line) => {
         line = line.trim();
         switch (line) {
             case "quit":
@@ -26,21 +25,16 @@ const teachers = require("./teachers.js");
             case "help":
             case "menu":
                 showMenu();
-                rl.prompt();
                 break;
             case "larare":
-                teachers.larare(rl);
-                break;
-            case "larare":
-                teachers.larare(rl);
+                await teachers.larare(rl);
                 break;
             default:
                 console.log("No option called that");
                 showMenu();
-                rl.prompt();
                 break;
         }
-
+        rl.prompt();
     });
 })();
 
@@ -72,7 +66,7 @@ function showMenu() {
         ` You can choose from the following commands.\n`
         + `  exit, quit, ctrl-d - to exit the program.\n`
         + `  help, menu - to show this menu.\n`
-        + `  cheat      - show the current number.\n`
+        + `  larare     - Show larare table.\n`
         + `  init       - randomize a new number.\n`
         + `  anything else is treated as a guess.`
     );
